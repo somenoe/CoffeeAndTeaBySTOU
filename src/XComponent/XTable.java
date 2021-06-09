@@ -5,7 +5,6 @@ import java.awt.event.*;
 import java.util.Vector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -49,4 +48,5 @@ public class XTable {
             }
         };
     }
+
 }
