@@ -12,7 +12,7 @@ public class XConnect {
 	public static Connection getConnection() {
 		try {
 			Class.forName(com.mysql.jdbc.Driver.class.getName());
-			return DriverManager.getConnection("jdbc:mysql://localhost/carcare", "root", "");
+			return DriverManager.getConnection("jdbc:mysql://localhost/CoffeeAndTea", "root", "");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

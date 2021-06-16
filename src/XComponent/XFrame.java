@@ -69,19 +69,15 @@ public class XFrame extends JFrame {
     return new XButton(textOnButton);
   }
 
-  protected Component titleLabel(String string) {
+  protected Component labelTitle(String string) {
     JLabel label = new JLabel(string);
     label.setFont(new Font("Sarabun", Font.BOLD, 30));
-    label.setForeground(Color.RED);
+    label.setForeground(Color.black);
     return label;
   }
 
   protected Component label(String textOnLabel) {
     return new JLabel(textOnLabel);
-  }
-
-  protected JScrollPane table() {
-    return new XTable().tablePanel();
   }
 
   protected JTextField textField(int column) {
