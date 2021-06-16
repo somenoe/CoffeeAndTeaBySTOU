@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.*;
 
-public class FormCustomer extends XFrame {
+public class Staff extends XFrame {
 
   public static void main(String[] args) {
-    FormCustomer customer = new FormCustomer();
-    customer.packWith(customer.page());
+    Staff staff = new Staff();
+    staff.packWith(staff.page());
   }
 
-  public FormCustomer() {
-    super("ข้อมูลพื้นฐาน: ลูกค้า");
+  public Staff() {
+    super("ข้อมูลพื้นฐาน: พนักงาน");
   }
 
   public XPanel page() {
@@ -34,7 +34,7 @@ public class FormCustomer extends XFrame {
   }
 
   private XPanel panelForm() {
-    XPanel panel = panel().setRow(6).add(labelTitle("ข้อมูล: ลูกค้า"));
+    XPanel panel = panel().setRow(6).add(labelTitle("ข้อมูล: พนักงาน"));
 
     for (String name : tableColumnNames) {
       panel.add(detail(name));
@@ -46,7 +46,9 @@ public class FormCustomer extends XFrame {
   private XPanel detail(String title) {
     details.add(new JTextField(15));
 
-    return panel().setBorderTitle(title).add(details.lastElement());
+    return panel() //
+      .setBorderTitle(title) //
+      .add(details.lastElement());
   }
 
   private JScrollPane tablePanel() {
@@ -70,27 +72,6 @@ public class FormCustomer extends XFrame {
       .setCardLayout(0, 20);
   }
 
-  private Vector<String> tableColumnNames = new Vector<>(
-    List.of("เลขที่", "ชี่อ", "นามสกุล", "ที่อยู่", "หมายเลขโทรศัพท์")
-  );
-
-  private String[] sqlColumnId = {
-    "CUST_NUM",
-    "CUST_FNAME",
-    "CUST_LNAME",
-    "CUST_ADDR",
-    "CUST_PHONE",
-  };
-
-  private Vector<JTextField> details = new Vector<>();
-
-  private XTable xTable = new XTable(
-    tableColumnNames,
-    "CUSTOMER",
-    sqlColumnId,
-    details
-  );
-
   private XPanel searchPanel() {
     return panel() //
       .setFlowLayoutCenter() //
@@ -98,4 +79,23 @@ public class FormCustomer extends XFrame {
       .add(xTable.searchField) //
       .edged(5, 0, 0, 0);
   }
+
+  private Vector<String> tableColumnNames = new Vector<>(
+    List.of("ชื่อผู้ใช้", "รหัสผ่าน", "ชี่อ", "นามสกุล", "สิทธิการใช้งาน")
+  );
+
+  private Vector<JTextField> details = new Vector<>();
+
+  private XTable xTable = new XTable(
+    tableColumnNames,
+    "STAFF",
+    new String[] {
+      "USERNAME",
+      "PASSWORD",
+      "FIRST_NAME",
+      "LAST_NAME",
+      "PERMISSION",
+    },
+    details
+  );
 }

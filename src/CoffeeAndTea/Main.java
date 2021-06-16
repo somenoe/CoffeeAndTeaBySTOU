@@ -11,14 +11,15 @@ public class Main extends XFrame {
       new Runnable() {
         @Override
         public void run() {
-          new LogIn();
-          // new Main();
+          // new Main().login();
+          /* FOR TEST */
+          new Main().render();
         }
       }
     );
   }
 
-  private JMenuBar menuBar = menuBar()
+  public JMenuBar menuBar = menuBar()
     .add(
       menu("ข้อมูลพื้นฐาน")
         .add(item("พนักงาน").which(this::staff))
@@ -39,28 +40,50 @@ public class Main extends XFrame {
 
   public Main() {
     super("Coffee and Tea by STOU");
-    setJMenuBar(menuBar);
-    packWith(this.page());
   }
 
-  private XPanel page() {
-    return panel().setPreferredSize(700, 500);
+  private String firstName, lastName, permission;
+
+  public void setAccount(String firstName, String lastName, String permission) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.permission = permission;
+  }
+
+  public XPanel page() {
+    return panel() //
+      .setRow(2)
+      .add(labelTitle(permission))
+      .add(
+        panel() //
+          .add(label(firstName))
+          .add(label(lastName))
+      );
+  }
+
+  public void render() {
+    setJMenuBar(menuBar);
+    packWith(page());
+  }
+
+  public final void login() {
+    LogIn login = new LogIn();
+    new Main().packWith(login.page());
   }
 
   private final void logout() {
-    new LogIn();
+    login();
     dispose();
   }
 
-  private final void staff() {}
+  private final void staff() {
+    packWith(new Staff().page());
+  }
 
   private final void product() {}
 
   private final void customer() {
-    // getContentPane().removeAll();
-    // getContentPane().add(new FormCustomer().page());
-    // repaint();
-    packWith(new FormCustomer().page());
+    packWith(new Customer().page());
   }
 
   private final void order() {}

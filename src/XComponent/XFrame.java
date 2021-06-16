@@ -31,7 +31,7 @@ public class XFrame extends JFrame {
     UIManager.put("Menu.font", new Font("Sarabun", Font.BOLD, 20));
   }
 
-  protected void packWith(Container container) {
+  public void packWith(Container container) {
     setContentPane(container);
 
     pack();
